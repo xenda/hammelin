@@ -9,44 +9,44 @@ java_import org.jfugue.MusicStringParser
 
 module Hammelin
 
-	extend self
+  extend self
 
-	PADDING = " "
+  PADDING = " "
 
-	@logged_music_string = ""
+  @logged_music_string = ""
 
-	def play(tune)
-		if tune.respond_to? :play
-			tune.play
-		else
-			player.play(tune)
-			add_to_log(tune)
-			player.close
-		end
-	end
+  def play(tune)
+    if tune.respond_to? :play
+      tune.play
+    else
+      player.play(tune)
+      add_to_log(tune)
+      player.close
+    end
+  end
 
-	def save_tune(filename,&block)
-		instance_eval &block
-		save_to_file(filename)
-	end
+  def save_tune(filename,&block)
+    instance_eval &block
+    save_to_file(filename)
+  end
 
-	private
+  private
 
-	def add_to_log(tune)
-		logged_music_string << tune + PADDING
-	end
+  def add_to_log(tune)
+    logged_music_string << tune + PADDING
+  end
 
-	def logged_music_string
-		@logged_music_string
-	end
+  def logged_music_string
+    @logged_music_string
+  end
 
-	def save_to_file(filename)
-		file = java.io.File.new(filename)
-		player.save_midi(logged_music_string,file)
-	end
+  def save_to_file(filename)
+    file = java.io.File.new(filename)
+    player.save_midi(logged_music_string,file)
+  end
 
-	def player
-		@player ||= Player.new
-	end
+  def player
+    @player ||= Player.new
+  end
 
 end

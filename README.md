@@ -15,38 +15,38 @@ to play your own music:
 
 You could also work with notes: 
 
-		note = Hammelin::Note.new("E5s")
+    note = Hammelin::Note.new("E5s")
 
 And then just play it
 
-		note.play
+    note.play
 
 Hammelin also allows you to play with ranges:
 
-		note = Hammelin::Note.new("C")
-		note.upto("E5s").play
+    note = Hammelin::Note.new("C")
+    note.upto("E5s").play
 
 If wanted, you also have access to each note of the range:
 
-		note.upto("E5s").each do {|note| note.play }
-		note.upto("E5s").each do {|note| note.higher_octaves }
+    note.upto("E5s").each do {|note| note.play }
+    note.upto("E5s").each do {|note| note.higher_octaves }
 
 
 Now go and make some interesting tunes :)
 
-		note = Hammelin::Note.new("C")
-		2.times do 
-			note.upto("B").play.reverse.play.higher_octaves.play
-		end
+    note = Hammelin::Note.new("C")
+    2.times do 
+      note.upto("B").play.reverse.play.higher_octaves.play
+    end
 
 You could also save your work through a block:
 
-		Hammelin.save_tune("file.mid") do
+    Hammelin.save_tune("file.mid") do
 
-	  	note = Hammelin::Note.new("C")
-		  2.times do 
-			  note.upto("D#").play.reverse.play.higher_octaves.play.higher_octaves.play.higher_octaves.play
-		  end
+      note = Hammelin::Note.new("C")
+      2.times do 
+        note.upto("D#").play.reverse.play.higher_octaves.play.higher_octaves.play.higher_octaves.play
+      end
 
     end
 
