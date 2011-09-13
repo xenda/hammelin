@@ -80,7 +80,5 @@ module Hammelin
     end
 
   end
-
-
-
+  
 end

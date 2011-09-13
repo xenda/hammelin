@@ -12,7 +12,6 @@ module Hammelin
   extend self
 
   PADDING = " "
-
   @logged_music_string = ""
 
   def play(tune)
@@ -28,6 +27,8 @@ module Hammelin
   def save_tune(filename,&block)
     instance_eval &block
     save_to_file(filename)
+  ensure
+    player.close
   end
 
   private

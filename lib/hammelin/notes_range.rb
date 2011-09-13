@@ -47,7 +47,6 @@ module Hammelin
       enum.map{|value| Note.from_value(value) }
     end
 
-
   end
 
 end
