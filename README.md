@@ -51,3 +51,8 @@ You could also save your work through a block:
     end
 
 
+### Running on GNU/Linux? 
+
+There was a reported bug when a missing library wasn't found by the Java VM. The file (libpuse-java.so) should be on 
+
+  /usr/lib/jvm/java-6-openjdk/jre/lib/i386
