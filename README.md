@@ -45,7 +45,13 @@ You could also save your work through a block:
 
       note = Hammelin::Note.new("C")
       2.times do 
-        note.upto("D#").play.reverse.play.higher_octaves.play.higher_octaves.play.higher_octaves.play
+        tune = note.upto("D#").play
+        tune = tune.reverse
+    
+        2.times do 
+          tune.play
+          tune = tune.higher_octaves
+        end
       end
 
     end

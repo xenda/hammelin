@@ -15,13 +15,11 @@ module Hammelin
   @logged_music_string = ""
 
   def play(tune)
-    if tune.respond_to? :play
-      tune.play
-    else
-      player.play(tune)
-      add_to_log(tune)
-      player.close
-    end
+    player.play(tune)
+    add_to_log(tune)
+    player.close
+
+    self
   end
 
   def save_tune(filename,&block)
