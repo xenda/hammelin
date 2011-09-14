@@ -1,4 +1,4 @@
-require_relative 'lib/hammelin'
+require_relative '../lib/hammelin'
 
 Hammelin.save_tune("file.mid") do
 
