@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
-require_relative "lib/hammelin/version"
+$:.push File.expand_path("../lib", __FILE__)
+require "hammelin/version"
 
 Gem::Specification.new do |s|
   s.name        = "hammelin"
