@@ -1,16 +1,20 @@
 require_relative '../lib/hammelin'
 
-Hammelin.save_tune("file.mid") do
+Hammelin.compose("file.mid") do
 
   note = Hammelin::Note.new("C")
+
   2.times do 
-    tune = note.upto("D#").play
-    tune = tune.reverse
+    tune = note.upto("D#")
+    play tune
+    play tune.reverse
 
     2.times do 
-      tune.play
-      tune = tune.higher_octaves
+      play tune
+      play tune.increase_octave
+      play tune.increase_octave(2)
     end
+
   end
 
 end

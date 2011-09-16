@@ -33,20 +33,20 @@ module Hammelin
       "[#{parse_value}]"
     end
 
-    def increase_octaves
-      Note.from_value(higher_octave)
+    def increase_octave(times)
+      Note.from_value(higher_octave(times))
     end
 
-    def decrease_octaves
-      Note.from_value(lower_octave)
+    def decrease_octave(times)
+      Note.from_value(lower_octave(times))
     end
 
-    def increase_octaves!
-     self.token = increase_octaves.value
+    def increase_octave!(times)
+      self.token = increase_octaves(times).value
     end
 
-    def decrease_octaves!
-      self.value = decrease_octaves.value
+    def decrease_octave!(times)
+      self.token = decrease_octaves(times).value
     end
 
     def value
@@ -63,8 +63,12 @@ module Hammelin
       MusicStringParser.get_note(self.token).get_value
     end
 
-    def higher_octave
-      OCTAVE_JUMP + self.value unless highest_octave?
+    def higher_octave(times=1)
+      OCTAVE_JUMP*times + self.value unless highest_octave?
+    end
+
+    def lower_octave(times=1)
+      OCTAVE_JUMP*times + self.value unless lowest_octave?
     end
 
     def highest_octave?
@@ -73,10 +77,6 @@ module Hammelin
 
     def lowest_octave?
       self.value <= OCTAVE_JUMP
-    end
-
-    def lower_octave
-      OCTAVE_JUMP + self.value unless highest_octave?
     end
 
   end

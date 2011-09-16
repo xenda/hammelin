@@ -27,12 +27,12 @@ module Hammelin
 
     alias :upto :downto
 
-    def higher_octaves
-      NotesRange.new(@from.increase_octaves, @to.increase_octaves)
+    def increase_octave(times=1)
+      NotesRange.new(@from.increase_octave(times), @to.increase_octave(times))
     end
 
-    def decrease_octaves
-      NotesRange.new(@from.increase_octaves, @to.decrease_octaves)
+    def decrease_octave(times=1)
+      NotesRange.new(@from.decrease_octave(times), @to.decrease_octave(times))
     end
 
     def music_string
