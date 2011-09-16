@@ -29,33 +29,35 @@ Hammelin also allows you to play with ranges:
 If wanted, you also have access to each note of the range:
 
     note.upto("E5s").each do {|note| note.play }
-    note.upto("E5s").each do {|note| note.higher_octaves }
+    note.upto("E5s").each do {|note| note.increase_octave }
 
 
 Now go and make some interesting tunes :)
 
-    note = Hammelin::Note.new("C")
-    2.times do 
-      note.upto("B").play.reverse.play.higher_octaves.play
-    end
-
-You could also save your work through a block:
-
-    Hammelin.save_tune("file.mid") do
+    Hammelin.compose do
 
       note = Hammelin::Note.new("C")
+      tune = note.upto("D#")
+
       2.times do 
-        tune = note.upto("D#").play
-        tune = tune.reverse
-    
+        play tune
+        play tune.reverse
+
         2.times do 
-          tune.play
-          tune = tune.higher_octaves
+           play tune
+           play tune.increase_octave
+           play tune.increase_octave(2)
         end
+
       end
 
     end
 
+## Saving your work
+
+Just send a filename to the compose method:
+
+    Hammelin.compose("file.mid") do
 
 ### Running on GNU/Linux? 
 

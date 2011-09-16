@@ -3,9 +3,9 @@ require_relative '../lib/hammelin'
 Hammelin.compose("file.mid") do
 
   note = Hammelin::Note.new("C")
+  tune = note.upto("D#")
 
   2.times do 
-    tune = note.upto("D#")
     play tune
     play tune.reverse
 
