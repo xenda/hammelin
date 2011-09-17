@@ -5,8 +5,8 @@ module Hammelin
     include Comparable
     attr_accessor :token
 
-    OCTAVE_JUMP = 12
-    MAX_VALUE = 127
+    OCTAVE_JUMP  = 12
+    MAX_VALUE    = 127
     CAPPED_VALUE = MAX_VALUE - OCTAVE_JUMP
     
     def initialize(note)
