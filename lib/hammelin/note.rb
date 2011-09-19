@@ -14,15 +14,15 @@ module Hammelin
     end
 
     def play
-      Hammelin.play(music_string)
+      Hammelin.play_string (music_string)
     end
 
     def upto(note)
-      NotesRange.new(self,Note.new(note))
+      NotesRange.from_range(self,Note.new(note))
     end
 
     def downto(note)
-      NotesRange.new(Note.new(note),self)
+      NotesRange.from_range(Note.new(note),self)
     end
 
     def self.from_value(value)
@@ -42,11 +42,13 @@ module Hammelin
     end
 
     def increase_octave!(times)
-      self.token = increase_octaves(times).value
+      value = increase_octave(times).value
+      self.token = "[#{value}]"
     end
 
     def decrease_octave!(times)
-      self.token = decrease_octaves(times).value
+      value = decrease_octave(times).value
+      self.token = "[#{value}]"
     end
 
     def value
@@ -64,19 +66,19 @@ module Hammelin
     end
 
     def higher_octave(times=1)
-      OCTAVE_JUMP*times + self.value unless highest_octave?
+      highest_octave? ? value : OCTAVE_JUMP*times + self.value 
     end
 
     def lower_octave(times=1)
-      OCTAVE_JUMP*times + self.value unless lowest_octave?
+      lowest_octave? ? value : OCTAVE_JUMP*times + self.value 
     end
 
     def highest_octave?
-      self.value >= CAPPED_VALUE
+      self.value + OCTAVE_JUMP >= CAPPED_VALUE
     end
 
     def lowest_octave?
-      self.value <= OCTAVE_JUMP
+      self.value - OCTAVE_JUMP <= OCTAVE_JUMP
     end
 
   end

@@ -15,11 +15,14 @@ module Hammelin
   @logged_music_string = ""
 
   def play(tune)
-    if playable_tune?(tune)
-      play_tune(tune)
-    else
-      play_string(tune)
-     end
+    tune.play
+  rescue NoMethodError
+    case tune
+    when String
+      Note.new(tune).play
+    when Array
+      NotesRange.from_array(tune).play
+    end
   end
 
   def play_string(tune)
@@ -28,24 +31,28 @@ module Hammelin
     player.close
   end
 
-  def playable_tune?(tune)
-    return true if tune.respond_to? :play
-    return true if tune.is_a?(Array) ? playable_tune?(tune.first) : false
-  end
+  # def playable_tune?(tune)
+  #   return true if tune.respond_to? :play
+  #   return true if tune.is_a?(Array) ? playable_tune?(tune.first) : false
+  # end
 
-  def play_tune(tune)
-    if tune.respond_to? :play
-      tune.play
-    else
-      tune.each(&:play) if playable_tune?(tune.first)
-    end
-  end
+  # def play_tune(tune)
+  #   if tune.respond_to? :play
+  #     tune.play
+  #   else
+  #     tune.each(&:play) if playable_tune?(tune.first)
+  #   end
+  # end
 
   def compose(filename=nil,&block)
     instance_eval &block
     save_to_file(filename) if filename
   ensure
     player.close
+  end
+
+  def player
+    @player ||= Player.new
   end
 
   private
@@ -61,10 +68,6 @@ module Hammelin
   def save_to_file(filename)
     file = java.io.File.new(filename)
     player.save_midi(logged_music_string,file)
-  end
-
-  def player
-    @player ||= Player.new
   end
 
 end

@@ -1,6 +1,6 @@
 require_relative '../lib/hammelin'
 
-Hammelin.compose("file.mid") do
+Hammelin.compose("nested.mid") do
 
   note = Hammelin::Note.new("C")
   tune = note.upto("D#")
