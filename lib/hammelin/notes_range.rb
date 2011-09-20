@@ -13,8 +13,8 @@ module Hammelin
     end
 
     def self.from_array(array)
-      notes_range = array.inject([]) {|notes,notes_range| notes += notes_range }
-      NotesRange.new(notes_range)
+      #notes_range = array.inject([]) {|notes,notes_range| notes += notes_range }
+      NotesRange.new(array)
     end
 
     def play
