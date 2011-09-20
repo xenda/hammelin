@@ -1,11 +1,15 @@
-require 'delegate'
+require 'enumerator'
 
 module Hammelin
 
-  class NotesRange < DelegateClass(Array)
+  class NotesRange
+
+    include Enumerable
+    
+    attr_accessor :notes
 
     def initialize(array)
-      super(array)
+      @notes = array
     end
 
     def self.from_range(from,to)
@@ -16,6 +20,14 @@ module Hammelin
       NotesRange.new(array)
     end
 
+    def each
+      @notes.each{|note| yield note }
+    end
+
+    def reverse
+      @notes.reverse
+    end
+    
     def play
       Hammelin.play_string music_string
       self
@@ -31,19 +43,19 @@ module Hammelin
     alias :upto :downto
 
     def increase_octave(times=1)
-      notes = map {|note| note.increase_octave(times)}
+      notes = @notes.map {|note| note.increase_octave(times)}
 
       NotesRange.new(notes)
     end
 
     def decrease_octave(times=1)
-      notes = map {|note| note.decrease_octave(times)}
+      notes = @notes.map {|note| note.decrease_octave(times)}
 
       NotesRange.new(notes)      
     end
 
     def music_string
-      map{|i| i.music_string }.join(" ")
+      @notes.map{|i| i.music_string }.join(" ")
     end
 
     private
