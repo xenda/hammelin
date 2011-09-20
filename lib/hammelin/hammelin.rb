@@ -1,6 +1,6 @@
 require 'java'
 
-require_relative '../../bin/jfugue-4.0.3.jar'
+require_relative '../../vendor/jfugue-4.0.3.jar'
 
 java_import org.jfugue.Player
 java_import org.jfugue.Pattern
