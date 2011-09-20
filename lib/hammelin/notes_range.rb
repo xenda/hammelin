@@ -22,10 +22,6 @@ module Hammelin
       self
     end
 
-    def reverse
-      NotesRange.from_range(last,first)
-    end
-
     # downto and upto are just some sintactic sugar for expanding the range to 
     # a new value. It will create a new NotesRange object with the last Note 
     # and then will figure out how to get to the newest one. 

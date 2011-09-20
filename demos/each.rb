@@ -2,4 +2,7 @@ require_relative '../lib/hammelin'
 
 note = Hammelin::Note.new("C")
 beat = note.upto("D#").map{|n| n.upto("D#")}
-5.times { Hammelin.play beat }
+
+Hammelin.compose "iterative.mid" do
+  5.times { play beat }
+end

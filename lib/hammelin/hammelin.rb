@@ -31,19 +31,6 @@ module Hammelin
     player.close
   end
 
-  # def playable_tune?(tune)
-  #   return true if tune.respond_to? :play
-  #   return true if tune.is_a?(Array) ? playable_tune?(tune.first) : false
-  # end
-
-  # def play_tune(tune)
-  #   if tune.respond_to? :play
-  #     tune.play
-  #   else
-  #     tune.each(&:play) if playable_tune?(tune.first)
-  #   end
-  # end
-
   def compose(filename=nil,&block)
     instance_eval &block
     save_to_file(filename) if filename
@@ -51,11 +38,11 @@ module Hammelin
     player.close
   end
 
+  private
+
   def player
     @player ||= Player.new
   end
-
-  private
 
   def add_to_log(tune)
     logged_music_string << tune + PADDING
