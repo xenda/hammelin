@@ -1,5 +1,3 @@
-require 'enumerator'
-
 module Hammelin
 
   class NotesRange
@@ -21,13 +19,17 @@ module Hammelin
     end
 
     def each
-      @notes.each{|note| yield note }
+      if block_given? 
+        @notes.each {|note| yield note} 
+      else 
+        to_enum(:each) 
+      end
     end
 
     def reverse
       @notes.reverse
     end
-    
+
     def play
       Hammelin.play_string music_string
       self
