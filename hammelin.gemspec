@@ -5,8 +5,8 @@ require "hammelin/version"
 Gem::Specification.new do |s|
   s.name        = "hammelin"
   s.version     = Hammelin::VERSION
-  s.authors     = ["Alvaro Pereyra"]
-  s.email       = "alvaro@xendacentral.com"
+  s.authors     = ["Alessandra Pereyra"]
+  s.email       = "alessapereyra@gmail.com"
   s.homepage    = ""
   s.summary     = %q{Hammelin allows you to play around with JFugue MIDI capabilities}
   s.description = %q{Hammelin wraps around JFugue and lets your play with notes, making Ruby sing}
